@@ -38,7 +38,7 @@ def generate_miniview():
 
     g = ET.Element('g')
     if len(lines) > 1:
-        y = 0
+        y = 1
         x = vim.current.window.width - 12
         height = .2
         longest_line = max(*map(len, vim.current.buffer))
