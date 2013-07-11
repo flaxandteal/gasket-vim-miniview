@@ -66,12 +66,16 @@ def generate_miniview():
                 **{'fill' : 'rgb' + str(line_colour) + '', 'fill-opacity' : str(opacity)})
 
             if search_term:
-                matches = re.finditer(search_term, line)
-                for match in matches:
-                    offset = x + 1 + match.start() * ratio
-                    width = (match.end() - match.start()) * ratio
-                    ET.SubElement(g, 'rect', x=str(offset), y=str(y), width=str(width), height=str(height),
-                            **{'fill' : 'rgb' + str(found_colour) + '', 'fill-opacity' : '1'})
+                try :
+                    matches = re.finditer(search_term, line)
+                except re.error :
+                    pass
+                else :
+                    for match in matches:
+                        offset = x + 1 + match.start() * ratio
+                        width = (match.end() - match.start()) * ratio
+                        ET.SubElement(g, 'rect', x=str(offset), y=str(y), width=str(width), height=str(height),
+                                **{'fill' : 'rgb' + str(found_colour) + '', 'fill-opacity' : '1'})
     vim.train.update_carriage(miniview_car_id, g)
 endpython
 
