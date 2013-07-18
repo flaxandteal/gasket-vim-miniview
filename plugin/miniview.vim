@@ -17,18 +17,19 @@ python <<endpython
 import vim, os
 import lxml.etree as ET
 import re
-from gi.repository import Gasket
 
-# Get Train up and running if it isn't already
-#plugin_folder = os.path.realpath(os.path.dirname(os.path.abspath(vim.eval("s:current_file"))) + "../../../trainconductor/plugin")
-#sys.path.insert(0, plugin_folder)
-#import trainconductor_vim
+if not hasattr(vim, "train"):
+    vim.train = None
 
-if Gasket and not hasattr(vim, "train"):
+try :
+    from gi.repository import Gasket
+    have_gasket = True
+except :
+    have_gasket = False
+
+if have_gasket and vim.train is None :
     vim.train = Gasket.Train()
-    if vim.train.station_connect() < 0 :
-	vim.train = None
-    else :
+    if vim.train.station_connect() >= 0 :
         vim.command("let s:TrainConnection = 1")
 
 if vim.train is not None:
