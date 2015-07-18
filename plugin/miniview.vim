@@ -86,7 +86,7 @@ def generate_miniview():
                             width = (match.end() - match.start()) * ratio
                             ET.SubElement(g, 'rect', x=str(offset), y=str(y), width=str(width), height=str(height),
                                     **{'fill' : 'rgb' + str(found_colour) + '', 'fill-opacity' : '1'})
-    vim.train.update_carriage(miniview_car_id, ET.tostring(g, pretty_print=True))
+    vim.train.update_carriage(miniview_car_id, g)
 endpython
 
 function! s:Redisplay()
