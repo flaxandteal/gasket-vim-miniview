@@ -1,3 +1,5 @@
+" MIT License. Copyright (c) Phil Weir 2012-
+
 if exists("g:loaded_miniview")
 	finish
 endif
